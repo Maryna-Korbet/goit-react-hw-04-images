@@ -2,6 +2,7 @@ import { Component } from 'react';
 import css from 'components/Serchbar/Serchbar.module.css';
 import PropTypes from 'prop-types';
 
+
 export class Searchbar extends Component {
     state = {
         searchQuery: '',
