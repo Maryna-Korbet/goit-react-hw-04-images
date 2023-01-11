@@ -4,6 +4,7 @@ import { Searchbar } from 'components/Serchbar/Serchbar';
 import { ImageGallery } from 'components/ImageGallery/ImageGallery';
 import { Button } from 'components/Button/Button';
 import { Loader } from 'components/Loader/Loader';
+import { Modal } from 'components/Modal/Modal';
 import css from 'components/App/App.module.css';
 
 
@@ -16,6 +17,7 @@ export class App extends Component {
     error: null,
     isLoading: false,
     loadMore: false,
+    showModal: false,
   }
 
   componentDidUpdate(_, prevState) {
@@ -55,16 +57,31 @@ export class App extends Component {
   loadMoreImages = () => {
       this.setState(prevState => ({ page: prevState.page + 1 }));
   };
-  
+
+  openModal = largeImageURL => {
+    console.log(largeImageURL);
+    this.setState({
+      showModal: true,
+      largeImageURL: largeImageURL,
+    });
+  };
+
+  closeModal = () => {
+    this.setState({
+      showModal: false,
+    });
+  };
+
   render() {
-    const { images, page, isLoading, loadMore} = this.state;
+    const { images, page, isLoading, loadMore, showModal, largeImageURL} = this.state;
 
     return (
       <div className={css.App}>
         <Searchbar onSubmit={this.formSubmit} />
-        {!isLoading && <ImageGallery images={images} />}
+        {!isLoading && <ImageGallery images={images} openModal={this.openModal} />}
         {loadMore && <Button onloadMore={this.loadMoreImages} page={page} />}
         {isLoading && <Loader />}
+        {showModal && <Modal largeImageURL={largeImageURL} onClose={this.closeModal} />}
       </div>
     );
   }

@@ -13,7 +13,7 @@ export class Searchbar extends Component {
     handleSubmit = e => {
     e.preventDefault();
     if (this.state.searchQuery.trim() === '') {
-        this.setState({ error: 'Missing search parameters, please write them' });
+        return alert ('Missing search parameters, please write them');
     }
     this.props.onSubmit(this.state.searchQuery);
         this.reset();
