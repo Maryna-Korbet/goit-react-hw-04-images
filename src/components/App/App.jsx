@@ -1,5 +1,6 @@
 import fetchDataApi from 'services/api';
 import { Component } from 'react';
+import { Searchbar } from 'components/Serchbar/Serchbar';
 import css from 'components/App/App.module.css';
 
 
@@ -11,8 +12,21 @@ export class App extends Component {
     per_page: 12,
   }
 
- render() {
-   return ();
+  formSubmit = searchQuery => {
+    this.setState({
+      searchQuery,
+      images: [],
+      page: 1,
+      loadMore: false,
+    });
+  };
+  
+  render() {
+    return (
+      <div className={css.App}>
+        <Searchbar onSubmit={this.formSubmit} />
+      </div>
+    );
   }
 }
 
