@@ -12,4 +12,4 @@ export function Loader() {
             className={css.loader}
         />
     );
-}
+};

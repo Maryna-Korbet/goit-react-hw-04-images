@@ -84,6 +84,6 @@ export class App extends Component {
         {showModal && <Modal largeImageURL={largeImageURL} onClose={this.closeModal} />}
       </div>
     );
-  }
+  };
 };
 

@@ -1,5 +1,6 @@
 import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
 import css from 'components/ImageGallery/ImageGallery.module.css';
+import PropTypes from 'prop-types';
 
 export const ImageGallery = ({ images, openModal }) => (
     <ul className={css.gallery}>
@@ -11,7 +12,17 @@ export const ImageGallery = ({ images, openModal }) => (
                 largeImageURL={largeImageURL}
                 openModal={openModal}
             />
-        ))}
+        ))};
     </ul>
 );
+
+ImageGallery.propTypes = {
+    images: PropTypes.array.isRequired,
+    openModal: PropTypes.func.isRequired,
+    id: PropTypes.string.isRequired,
+    webformatURL: PropTypes.string.isRequired,
+    tags: PropTypes.string.isRequired,
+    largeImageURL: PropTypes.string.isRequired,
+};
+
 
