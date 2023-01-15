@@ -9,7 +9,7 @@ export const Button = ({ onloadMore }) => {
         </button>
     </div>
     );
-};
+}
 
 Button.propTypes = {
     onloadMore: PropTypes.func.isRequired,

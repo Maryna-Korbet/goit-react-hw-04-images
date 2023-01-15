@@ -6,6 +6,12 @@ import PropTypes from 'prop-types';
 const modalRoot = document.querySelector('#modal-root');
 
 export class Modal extends Component {
+    static propTypes = {
+        largeImageUrl: PropTypes.string,
+        tags: PropTypes.string,
+        onClick: PropTypes.func,
+    };
+
     componentDidMount() {
         window.addEventListener('keydown', this.handleKeyDown);
     }
@@ -30,16 +36,12 @@ export class Modal extends Component {
         return createPortal(
             <div className={css.backdrop} onClick={this.handleBackDropClick}>
                 <div className={css.content}>
-                    <img src={this.props.largeImageURL} alt="modal" />
+                    <img src={this.props.largeImageURL} alt={this.props.tags} />
                 </div>
             </div>,
         modalRoot
     );
-    };
-};
+    }
+}
 
-Modal.propTypes = {
-    largeImageUrl: PropTypes.string.isRequired,
-    onClose: PropTypes.func.isRequired,
-};
 

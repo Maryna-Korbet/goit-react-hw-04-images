@@ -8,16 +8,21 @@ export class Searchbar extends Component {
         searchQuery: '',
     };
 
+    static propTypes = {
+        onSubmit: PropTypes.func.isRequired,
+    };
+
     handleChange = e => {
         this.setState({ searchQuery: e.currentTarget.value.toLowerCase() });
     };
     
     handleSubmit = e => {
-    e.preventDefault();
-    if (this.state.searchQuery.trim() === '') {
-        return alert ('Missing search parameters, please write them');
-    }
-    this.props.onSubmit(this.state.searchQuery);
+        e.preventDefault();
+        if (this.state.searchQuery.trim() === '') {
+            return alert('Missing search parameters, please write them');
+        }
+        
+        this.props.onSubmit(this.state.searchQuery);
         this.reset();
     };
     
@@ -42,16 +47,14 @@ export class Searchbar extends Component {
                         autoFocus
                         placeholder="Search images and photos"
                         name="searchQuery"
+                        value={this.state.searchQuery}
                         onChange={this.handleChange}
                     />
                 </form>
             </header>
         );
-    };
-};
+    }
+}
 
-Searchbar.propTypes = {
-    onSubmit: PropTypes.func.isRequired,
-};
 
 
